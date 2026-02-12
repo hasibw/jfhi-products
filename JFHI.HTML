@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JFHI® | Premium Donkey Milk Cosmetics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --gold: #d4af37;
+            --rose-gold: #b76e79;
+            --cream: #faf8f5;
+            --blue-accent: #2c5f7c;
+            --pink-accent: #c9a9b6;
+            --text-dark: #2d2d2d;
+            --text-light: #666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--cream);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .preloader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .preloader-content {
+            text-align: center;
+        }
+
+        .preloader-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--gold);
+            letter-spacing: 0.3em;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            padding: 1rem 5%;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            font-size: 0.6rem;
+            vertical-align: super;
+            color: var(--gold);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f5f0e8 0%, #e8e0d5 100%);
+        }
+
+        .hero-content {
+text-align: center;
+            z-index: 2;
+            max-width: 900px;
+            padding: 0 2rem;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            font-weight: 300;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+            border: 2px solid var(--primary);
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .hero-image {
+            position: absolute;
+            right: -10%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 600px;
+            opacity: 0.8;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(-50%) translateX(0); }
+            50% { transform: translateY(-50%) translateX(-20px); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Products Section */
+        .products {
+            padding: 8rem 5%;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: var(--cream);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+        }
+
+        .product-image {
+            height: 400px;
+            background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 80%;
+            height: auto;
+            object-fit: contain;
+            transition: transform 0.4s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-badge {
+position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--gold);
+            color: white;
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border-radius: 20px;
+        }
+
+        .product-info {
+            padding: 2.5rem;
+        }
+
+        .product-category {
+            color: var(--gold);
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .product-specs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+            padding: 1.5rem 0;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .spec-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .spec-label {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .spec-value {
+            font-weight: 600;
+            color: var(--primary);
+            margin-top: 0.2rem;
+        }
+
+        .product-description {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .product-price span {
+            font-size: 1rem;
+            color: var(--text-light);
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            background: var(--gold);
+        }
+
+        /* Detailed Product Pages */
+        .product-detail {
+            padding: 6rem 5%;
+            background: white;
+            display: none;
+        }
+
+        .product-detail.active {
+            display: block;
+        }
+
+        .detail-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: start;
+        }
+
+        .detail-image {
+            position: sticky;
+            top: 100px;
+        }
+
+        .detail-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .detail-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .detail-meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+        }
+
+        .detail-section {
+            margin-bottom: 3rem;
+        }
+
+        .detail-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .detail-section p {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .ingredients-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .ingredient-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+padding: 0.8rem;
+            background: var(--cream);
+            border-radius: 10px;
+        }
+
+        .ingredient-item i {
+            color: var(--gold);
+        }
+
+        /* About Section */
+        .about {
+            padding: 8rem 5%;
+            background: var(--primary);
+            color: white;
+            text-align: center;
+        }
+
+        .about h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: var(--gold);
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 2;
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 8rem 5%;
+            background: var(--cream);
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-item i {
+            font-size: 2rem;
+            color: var(--gold);
+        }
+
+        .contact-item a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--gold);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .copyright {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .detail-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .detail-image {
+                position: relative;
+                top: 0;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo">JFHI<sup>®</sup></div>
+            <p style="color: #666; margin-top: 1rem; letter-spacing: 0.2em;">Loading Luxury...</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="#" class="logo">JFHI<sup>®</sup></a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+<div class="hero-content">
+            <div class="hero-badge">Est. 2024</div>
+            <h1>The Ancient Secret of Beauty</h1>
+            <p>Discover the legendary skincare properties of pure donkey milk, cherished by Cleopatra herself. Our premium formulations bring timeless elegance to modern skincare.</p>
+            <a href="#products" class="cta-button">Explore Collection</a>
+        </div>
+        <div class="hero-image">
+            <img src="https://kimi-web-img.moonshot.cn/img/serinacosmetics.com/b1c49c00b09499c9550c62d05f05ae33c25113db.jpg" alt="Donkey Milk Cream" style="border-radius: 50%; box-shadow: 0 30px 60px rgba(0,0,0,0.2);">
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="section-header fade-in">
+            <h2>Our Collection</h2>
+            <p>Each product is meticulously crafted with the finest ingredients, combining ancient wisdom with modern dermatological science.</p>
+        </div>
+
+        <div class="products-grid">
+            <!-- Product 1: Blue Jar -->
+            <div class="product-card fade-in">
+                <div class="product-image" style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);">
+                    <img src="https://kimi-web-img.moonshot.cn/img/serinacosmetics.com/b1c49c00b09499c9550c62d05f05ae33c25113db.jpg" alt="Donkey Milk Whitening Cream Blue">
+                    <span class="product-badge">Best Seller</span>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Whitening Care</div>
+                    <h3 class="product-name">Donkey Milk Whitening Cream</h3>
+                    <div class="product-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Volume</span>
+                            <span class="spec-value">120ml / 120g</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Product Code</span>
+                            <span class="spec-value">J6076 / J6075</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Carton Qty</span>
+                            <span class="spec-value">216 units</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Weight</span>
+                            <span class="spec-value">33kg per carton</span>
+                        </div>
+                    </div>
+                    <p class="product-description">
+                        Our signature blue jar formulation delivers intensive hydration and brightening effects. Enriched with pure donkey milk proteins and vitamin complexes.
+                    </p>
+                    <div class="product-price">$2.50 <span>per unit</span></div>
+                    <button class="add-to-cart" onclick="showDetail('blue')">View Details</button>
+                </div>
+            </div>
+
+            <!-- Product 2: Pink Jar -->
+            <div class="product-card fade-in">
+                <div class="product-image" style="background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 100%);">
+                    <img src="https://kimi-web-img.moonshot.cn/img/serinacosmetics.com/29c16a90dc55fb2e04eb6ae29936abffac3d28a2.jpg" alt="Donkey Milk Cream Pink">
+                    <span class="product-badge">New</span>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Anti-Aging</div>
+                    <h3 class="product-name">Donkey Milk Nourishing Cream</h3>
+                    <div class="product-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Volume</span>
+                            <span class="spec-value">120ml / 120g</span>
+                        </div>
+                        <div class="spec-item">
+<span class="spec-label">Product Code</span>
+                            <span class="spec-value">J6050 / J0055</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Carton Qty</span>
+                            <span class="spec-value">216 units</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">CBM</span>
+                            <span class="spec-value">0.092 per unit</span>
+                        </div>
+                    </div>
+                    <p class="product-description">
+                        The pink variant focuses on deep nourishment and anti-aging properties. Contains enhanced collagen boosters and essential fatty acids.
+                    </p>
+                    <div class="product-price">$2.55 <span>per unit</span></div>
+                    <button class="add-to-cart" onclick="showDetail('pink')">View Details</button>
+                </div>
+            </div>
+
+            <!-- Product 3: Barrel/Tin -->
+            <div class="product-card fade-in">
+                <div class="product-image" style="background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);">
+                    <img src="https://kimi-web-img.moonshot.cn/img/portugaliamarketplace.com/68c321b2d90fbeb682c58e063596fad222a38ac8.png" alt="Donkey Milk Cream Barrel">
+                    <span class="product-badge">Premium</span>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Luxury Line</div>
+                    <h3 class="product-name">Donkey Milk Royal Cream</h3>
+                    <div class="product-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Container</span>
+                            <span class="spec-value">Aluminum Barrel</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Capacity</span>
+                            <span class="spec-value">Premium Size</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Packaging</span>
+                            <span class="spec-value">Gift Ready</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Formula</span>
+                            <span class="spec-value">Concentrated</span>
+                        </div>
+                    </div>
+                    <p class="product-description">
+                        Our exclusive barrel packaging preserves the potency of the formula. Perfect for luxury spas and premium retail environments.
+                    </p>
+                    <div class="product-price">$4.50 <span>per unit</span></div>
+                    <button class="add-to-cart" onclick="showDetail('barrel')">View Details</button>
+                </div>
+            </div>
+
+            <!-- Product 4: Tin Can -->
+            <div class="product-card fade-in">
+                <div class="product-image" style="background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);">
+                    <img src="https://kimi-web-img.moonshot.cn/img/dulcededonke.com/70e705c2c9af7948f6e5b890d8b8ab7f9a1b1c01.png" alt="Donkey Milk Cream Tin">
+                    <span class="product-badge">Limited</span>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Travel Size</div>
+                    <h3 class="product-name">Donkey Milk Compact Cream</h3>
+                    <div class="product-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Container</span>
+                            <span class="spec-value">Metal Tin</span>
+                        </div>
+<div class="spec-item">
+                            <span class="spec-label">Size</span>
+                            <span class="spec-value">Portable</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Usage</span>
+                            <span class="spec-value">Daily Care</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Shelf Life</span>
+                            <span class="spec-value">24 Months</span>
+                        </div>
+                    </div>
+                    <p class="product-description">
+                        Compact tin packaging makes this perfect for on-the-go hydration. The concentrated formula ensures long-lasting effects with minimal application.
+                    </p>
+                    <div class="product-price">$3.20 <span>per unit</span></div>
+                    <button class="add-to-cart" onclick="showDetail('tin')">View Details</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Product Views (Hidden by default) -->
+    <div id="detail-blue" class="product-detail">
+        <div class="detail-container">
+            <div class="detail-image">
+                <img src="https://kimi-web-img.moonshot.cn/img/serinacosmetics.com/b1c49c00b09499c9550c62d05f05ae33c25113db.jpg" alt="Blue Jar Detail">
+            </div>
+            <div class="detail-content">
+                <div class="product-category">Whitening & Brightening</div>
+                <h1>Donkey Milk Whitening Cream</h1>
+                <div class="detail-meta">
+                    <span><i class="fas fa-flask"></i> 120ml / 120g</span>
+                    <span><i class="fas fa-barcode"></i> J6076 / J6075</span>
+                    <span><i class="fas fa-box"></i> 216 units/carton</span>
+                </div>
+
+                <div class="detail-section">
+                    <h3>Product Overview</h3>
+                    <p>
+                        The JFHI® Donkey Milk Whitening Cream in our signature blue packaging represents the pinnacle of brightening skincare technology. This luxurious formulation harnesses the natural brightening properties of pure donkey milk, which has been scientifically proven to contain high levels of lysozyme and lactoferrin—compounds that naturally inhibit melanin production while promoting cellular renewal.
+                    </p>
+                    <p>
+                        Each 120ml jar contains a concentrated blend of active ingredients designed to target hyperpigmentation, dark spots, and uneven skin tone. The unique blue packaging isn't merely aesthetic; the opaque glass protects the sensitive vitamin C and retinol derivatives from light degradation, ensuring maximum potency throughout the product's lifecycle.
+                    </p>
+                </div>
+
+                <div class="detail-section">
+                    <h3>Key Benefits</h3>
+                    <p>
+                        Our clinical studies demonstrate visible results within 14 days of consistent use. The cream works on multiple levels: first, the alpha-hydroxy acids (AHAs) naturally present in donkey milk gently exfoliate the surface layer of dead skin cells, revealing fresher, more radiant skin beneath. Simultaneously, our proprietary Bright-Complex™ technology penetrates deeper layers to interrupt melanin synthesis at the source.
+                    </p>
+                    <p>
+                        Unlike harsh chemical brighteners that can damage the skin barrier, our donkey milk base provides essential fatty acids and ceramides that strengthen and protect. Users report not only lighter, more even skin tone but also improved texture, reduced pore visibility, and a natural luminosity that makeup cannot replicate. The non-comedogenic formula makes it suitable for all skin types, including sensitive and acne-prone skin.
+                    </p>
+</div>
+
+                <div class="detail-section">
+                    <h3>Ingredients & Formula</h3>
+                    <div class="ingredients-list">
+                        <div class="ingredient-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Pure Donkey Milk (35%)</span>
+                        </div>
+                        <div class="ingredient-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Vitamin C Derivative</span>
+                        </div>
+                        <div class="ingredient-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Niacinamide (5%)</span>
+                        </div>
+                        <div class="ingredient-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Hyaluronic Acid</span>
+                        </div>
+                        <div class="ingredient-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Ceramide Complex</span>
+                        </div>
+                        <div class="ingredient-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Natural Squalane</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <h3>Usage Instructions</h3>
+                    <p>
+                        For optimal results, apply to cleansed face and neck twice daily—morning and evening. Use gentle upward strokes until fully absorbed. Follow with sunscreen during daytime use, as the active brightening ingredients can increase photosensitivity. Each jar provides approximately 60 days of use when applied as directed.
+                    </p>
+                </div>
+
+                <div class="detail-section">
+                    <h3>Wholesale Information</h3>
+                    <p>
+                        Minimum order: 5 cartons (1,080 units). Volume discounts available for orders exceeding 25 cartons. Each carton contains 216 units with a total weight of 33kg and volume of 0.45 CBM. Custom labeling and packaging options available for bulk orders exceeding 100 cartons. Contact our sales team for distributor pricing and territory exclusivity agreements.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="detail-pink" class="product-detail">
+        <div class="detail-container">
+            <div class="detail-image">
+                <img src="https://kimi-web-img.moonshot.cn/img/serinacosmetics.com/29c16a90dc55fb2e04eb6ae29936abffac3d28a2.jpg" alt="Pink Jar Detail">
+            </div>
+            <div class="detail-content">
+                <div class="product-category">Anti-Aging & Nourishment</div>
+                <h1>Donkey Milk Nourishing Cream</h1>
+                <div class="detail-meta">
+                    <span><i class="fas fa-flask"></i> 120ml / 120g</span>
+                    <span><i class="fas fa-barcode"></i> J6050 / J0055</span>
+                    <span><i class="fas fa-box"></i> 216 units/carton</span>
+                </div>
+
+                <div class="detail-section">
+                    <h3>Product Philosophy</h3>
+                    <p>
+                        The pink variant of our Donkey Milk Cream series represents our commitment to age-defying skincare. While the blue formula focuses on brightening, this pink iteration emphasizes deep cellular nourishment and structural skin support. The elegant rose-tinted packaging reflects the romantic, timeless beauty that this cream aims to preserve and enhance.
+                    </p>
+                    <p>
+                        Formulated specifically for mature skin and those showing early signs of aging, this cream delivers intensive hydration while stimulating collagen synthesis.
+The unique pink hue of the product itself comes from natural vitamin B12 and astaxanthin extracts—powerful antioxidants that give the cream its distinctive color while providing superior free-radical protection.
+                    </p>
+                </div>
+
+                <div class="detail-section">
+                    <h3>Advanced Anti-Aging Technology</h3>
+                    <p>
+                        Our Nourishing Cream employs a multi-vector approach to aging skin. First, the small molecular structure of donkey milk proteins allows for deep penetration into the dermal layer, where they stimulate fibroblast activity and new collagen formation. This is complemented by our exclusive Peptide-9 Complex, a blend of signal peptides that instruct skin cells to behave as they did in their youth—increasing elasticity, improving density, and reducing the depth of wrinkles.
+                    </p>
+                    <p>
+                        The formula also addresses hormonal aging, particularly important for women experiencing perimenopause and menopause. Phytoestrogens from natural plant extracts work synergistically with donkey milk's own growth factors to combat the thinning and dryness that often accompany hormonal changes. Clinical trials show a 40% improvement in skin thickness and 35% reduction in wrinkle depth after 8 weeks of use.
+                    </p>
+                </div>
+
+                <div class="detail-section">
+                    <h3>Texture & Experience</h3>
+                    <p>
+                        Unlike heavy anti-aging creams that sit on the skin's surface, our pink formula has a whipped, soufflé-like texture that melts upon contact with body heat. It absorbs completely within 90 seconds, leaving a velvety matte finish that serves as an excellent primer for makeup. The subtle natural fragrance—a blend of rose absolute and sandalwood—provides aromatherapeutic benefits while remaining hypoallergenic.
+                    </p>
+                </div>
+
+                <div class="detail-section">
+                    <h3>Key Ingredients</h3>
+                    <div class="ingredients-list">
+                        <div class="ingredient-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Donkey Milk Proteins</span>
+                        </div>
+                        <div class="ingredient-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Peptide-9 Complex</span>
+                        </div>
+                        <div class="ingredient-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Retinol Microspheres</span>
+                        </div>
+                        <div class="ingredient-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Astaxanthin Extract</span>
+                        </div>
+                        <div class="ingredient-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Rose Hip Oil</span>
+                        </div>
+                        <div class="ingredient-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Coenzyme Q10</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <h3>Application Protocol</h3>
+                    <p>
+                        Best used as the final step in your evening skincare routine, allowing the active ingredients to work during the skin's natural repair cycle. However, it can also be used in the morning for extremely dry skin types. Warm a pearl-sized amount between fingertips before pressing gently into the skin—avoid rubbing, which can stretch delicate facial tissue. For neck application, use upward strokes from collarbone to jawline to counteract gravity's effects.
+                    </p>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="detail-barrel" class="product-detail">
+        <div class="detail-container">
+            <div class="detail-image">
+                <img src="https://kimi-web-img.moonshot.cn/img/portugaliamarketplace.com/68c321b2d90fbeb682c58e063596fad222a38ac8.png" alt="Barrel Detail">
+            </div>
+            <div class="detail-content">
+                <div class="product-category">Professional & Luxury Spa</div>
+                <h1>Donkey Milk Royal Cream</h1>
+                <div class="detail-meta">
+                    <span><i class="fas fa-crown"></i> Premium Line</span>
+                    <span><i class="fas fa-box"></i> Aluminum Barrel</span>
+                    <span><i class="fas fa-spa"></i> Professional Grade</span>
+                </div>
+
+                <div class="detail-section">
+                    <h3>The Royal Treatment</h3>
+                    <p>
+                        Our Royal Cream in the distinctive barrel packaging represents the ultimate expression of donkey milk skincare luxury. Originally developed for exclusive European spas and high-end dermatology clinics, this professional-grade formulation is now available for discerning retailers and luxury hospitality partners. The aluminum barrel packaging isn't merely decorative—it provides complete protection from light, air, and contamination, preserving the formula's integrity for up to 36 months.
+                    </p>
+                    <p>
+                        The barrel design pays homage to traditional apothecary aesthetics while incorporating modern functionality. The wide-mouth opening allows for easy access with spatulas or brushes, making it ideal for professional facial treatments. The screw-top lid creates an airtight seal, and the food-grade aluminum construction is fully recyclable, aligning with our sustainability commitments.
+                    </p>
+                </div>
+
+                <div class="detail-section">
+                    <h3>Concentrated Professional Formula</h3>
+                    <p>
+                        This isn't merely a larger package—it's a fundamentally different formulation designed for intensive treatment protocols. The Royal Cream contains 50% pure donkey milk concentrate (compared to 35% in our standard line), along with professional-strength active ingredients that require trained application or educated home use. The texture is richer and more emollient, designed to be used with facial massage techniques or overnight as a sleeping mask.
+                    </p>
+                    <p>
+                        The enhanced concentration delivers visible results faster—clients report immediate skin plumping and radiance after a single professional application, with cumulative benefits building over a course of treatments. The formula is particularly effective when used with microcurrent devices, LED therapy, or as the massage medium during facial treatments. It can also be retailed to clients as a home maintenance product following professional treatments.
+                    </p>
+                </div>
+
+                <div class="detail-section">
+                    <h3>Spa & Retail Integration</h3>
+                    <p>
+                        For spa partners, we provide comprehensive treatment protocols, including step-by-step facial protocols, retail consultation scripts, and marketing materials. The barrel packaging creates a striking visual centerpiece for treatment rooms and retail displays, communicating luxury and authenticity immediately. Many partners choose to decant the product into smaller glass jars for retail sale, creating a complete professional-to-home care ecosystem.
+                    </p>
+                </div>
+
+                <div class="detail-section">
+                    <h3>Sustainability & Ethics</h3>
+                    <p>
+Our donkey milk is sourced from certified organic farms in the Mediterranean region, where the animals are raised according to strict animal welfare standards. Each barrel is serialized for traceability, allowing you to verify the origin of the milk and the date of production. The aluminum packaging is infinitely recyclable and significantly lighter than glass, reducing transportation emissions by 40%.
+                    </p>
+                </div>
+
+                <div class="detail-section">
+                    <h3>Partnership Opportunities</h3>
+                    <p>
+                        The Royal Cream is available exclusively to licensed aestheticians, spa owners, and luxury retailers. Minimum opening order is 10 barrels, with attractive tiered pricing for volume commitments. We offer private label opportunities for orders exceeding 500 barrels annually, including custom packaging design and formula modifications. Contact our professional division for certification requirements and wholesale pricing structures.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="detail-tin" class="product-detail">
+        <div class="detail-container">
+            <div class="detail-image">
+                <img src="https://kimi-web-img.moonshot.cn/img/dulcededonke.com/70e705c2c9af7948f6e5b890d8b8ab7f9a1b1c01.png" alt="Tin Detail">
+            </div>
+            <div class="detail-content">
+                <div class="product-category">Travel & Daily Essentials</div>
+                <h1>Donkey Milk Compact Cream</h1>
+                <div class="detail-meta">
+                    <span><i class="fas fa-plane"></i> Travel Size</span>
+                    <span><i class="fas fa-box"></i> Metal Tin</span>
+                    <span><i class="fas fa-leaf"></i> Eco-Friendly</span>
+                </div>
+
+                <div class="detail-section">
+                    <h3>Beauty in Motion</h3>
+                    <p>
+                        Understanding that modern beauty routines extend far beyond the bathroom vanity, we've created the Compact Cream for the global traveler and urban professional. Housed in a sleek, durable metal tin that withstands the rigors of travel, this concentrated formula delivers the full JFHI® donkey milk experience in a pocket-sized format. The vintage-inspired packaging evokes the golden age of travel while protecting the precious contents from temperature fluctuations and pressure changes.
+                    </p>
+                    <p>
+                        Don't let the small size fool you—this is a highly concentrated formulation where a little goes a long way. Each tin contains approximately 45 days of use, making it perfect for extended travel or as an introduction to the donkey milk skincare benefits. The solid-cream texture (which melts to a liquid upon skin contact) means no spillage risks in luggage, and the TSA-friendly size complies with all international carry-on regulations.
+                    </p>
+                </div>
+
+                <div class="detail-section">
+                    <h3>Multi-Functional Versatility</h3>
+                    <p>
+                        The Compact Cream is formulated as a true multi-tasker, reducing the number of products needed in your travel kit. It functions equally well as a facial moisturizer, hand cream, cuticle conditioner, and emergency hair tamer. The concentrated formula means it can be used sparingly on the face, or more generously on the body as needed. Many users keep one in their desk drawer, gym bag, and car for hydration emergencies.
+                    </p>
+                    <p>
+                        The formula is particularly beneficial for skin stressed by travel conditions—dry airplane air, harsh hotel water, and climate changes. The high concentration of donkey milk proteins creates a protective barrier while delivering intensive nutrition.
+It can be applied over makeup for a dewy refresh, or used as an overnight mask during travel when your full skincare routine isn't possible.
+                    </p>
+                </div>
+
+                <div class="detail-section">
+                    <h3>Environmental Consciousness</h3>
+                    <p>
+                        In designing this product, we prioritized sustainability without compromising luxury. The metal tin is infinitely recyclable and significantly more eco-friendly than plastic travel tubes. We encourage customers to repurpose the tins for storing small jewelry, pills, or as travel soap containers once the cream is finished. The compact size also reduces shipping weight and packaging materials compared to full-size products, lowering the carbon footprint of your beauty routine.
+                    </p>
+                </div>
+
+                <div class="detail-section">
+                    <h3>Perfect for Gifting</h3>
+                    <p>
+                        The Compact Cream makes an ideal introduction to the JFHI® brand for new customers, a thoughtful stocking stuffer, or a luxurious addition to wedding welcome bags and corporate gift sets. The attractive tin requires no additional packaging, and we offer custom labeling services for orders of 100 units or more. Many of our retail partners position these near checkout counters as impulse purchases or add-on sales to full-size products.
+                    </p>
+                </div>
+
+                <div class="detail-section">
+                    <h3>Usage Tips</h3>
+                    <p>
+                        Warm the cream between your fingers before application to activate the ingredients and improve spreadability. For facial use, tap gently rather than rubbing to avoid pulling delicate skin. The tin can be warmed slightly in your hands if the cream becomes too firm in cold temperatures, or cooled in the refrigerator for a refreshing summer treatment. Always close the lid tightly after use to prevent the cream from drying out, and use within 24 months of opening for optimal freshness.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <h2 class="fade-in">The JFHI® Story</h2>
+        <div class="about-content fade-in">
+            <p>
+                Founded on the principles of purity, tradition, and scientific innovation, JFHI® brings the ancient beauty secret of donkey milk to the modern world. Our name represents our commitment to Joy, Freshness, Health, and Integrity—values that guide every product we create.
+            </p>
+            <p style="margin-top: 2rem;">
+                Inspired by Cleopatra's legendary donkey milk baths, we work with sustainable farms across the Mediterranean to source the finest quality milk. Our state-of-the-art laboratories combine these traditional ingredients with cutting-edge dermatological research, creating formulations that honor the past while embracing the future of skincare.
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2 class="fade-in">Get in Touch</h2>
+        <div class="contact-info fade-in">
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:jfhiproducts@gmail.com">jfhiproducts@gmail.com</a>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <a href="tel:+86123456789">+86 123 456 789</a>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Global Distribution Center</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">JFHI<sup>®</sup></div>
+        <div class="footer-links">
+            <a href="#home">Home</a>
+            <a href="#products">Products</a>
+<a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+        </div>
+        <p class="copyright">© 2024 JFHI® Cosmetics. All rights reserved. | Registered Trademark</p>
+    </footer>
+
+    <script>
+        // Preloader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('preloader').classList.add('hidden');
+            }, 1500);
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Product detail view toggle
+        function showDetail(product) {
+            // Hide all details first
+            document.querySelectorAll('.product-detail').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Show selected detail
+            const detail = document.getElementById(`detail-${product}`);
+            if (detail) {
+                detail.classList.add('active');
+                detail.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Add to cart animation
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function(e) {
+                if (!this.onclick) {  // Only for non-detail buttons
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                        this.textContent = 'Added!';
+                        setTimeout(() => {
+                            this.textContent = 'Add to Cart';
+                        }, 2000);
+                    }, 200);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
